@@ -24,7 +24,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Change My Password"/>
                                 <connections>
-                                    <segue destination="laN-c2-Q2x" kind="presentation" id="JqT-x9-LtQ"/>
+                                    <segue destination="laN-c2-Q2x" kind="presentation" identifier="changePassword" id="JqT-x9-LtQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -85,7 +85,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Submit"/>
                                 <connections>
-                                    <action selector="changePassword:" destination="laN-c2-Q2x" eventType="touchUpInside" id="Uq1-R7-wMg"/>
+                                    <action selector="changePassword" destination="laN-c2-Q2x" eventType="touchUpInside" id="2iw-vg-kNL"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pfu-cp-wba">

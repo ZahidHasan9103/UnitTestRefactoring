@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet private(set) weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet private(set) weak var oldPasswordTextField: UITextField!
@@ -26,6 +26,9 @@ class ChangePasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        oldPasswordTextField.delegate = self
+        newPasswordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
         
         submitButton.layer.borderWidth = 1
         submitButton.layer.borderColor = UIColor(red: 55/255.0, green: 147/255.0, blue: 251/255.0, alpha: 1).cgColor
@@ -42,7 +45,9 @@ class ChangePasswordViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func changePassword(_ sender: Any) {
+    
+    
+    @IBAction func changePassword() {
         //1. Validate inputs
         if oldPasswordTextField.text?.isEmpty ?? true{
             oldPasswordTextField.becomeFirstResponder()
@@ -139,5 +144,16 @@ class ChangePasswordViewController: UIViewController {
                 
                 
             })
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === oldPasswordTextField{
+            newPasswordTextField.becomeFirstResponder()
+        }else if textField === newPasswordTextField{
+            confirmPasswordTextField.becomeFirstResponder()
+        }else if textField === confirmPasswordTextField{
+            changePassword()
+        }
+        return true
     }
 }
