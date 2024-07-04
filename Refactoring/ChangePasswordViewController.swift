@@ -17,7 +17,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private(set) weak var submitButton: UIButton!
     
     
-    private var passwordChanger = PasswordChanger()
+    lazy var passwordChanger: PasswordChanging = PasswordChanger()
     var securityToken = ""
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private let activityIndicator = UIActivityIndicatorView(style: .large)

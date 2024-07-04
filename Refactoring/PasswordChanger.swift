@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PasswordChanger{
+final class PasswordChanger: PasswordChanging{
     private static var pretendToSuccess = false
     private var successOrFailureTimer: SuccessOrFailureTimer?
     
@@ -45,4 +45,12 @@ private struct SuccessOrFailureTimer{
     let onSuccess: () -> Void
     let onFailure: (String) -> Void
     let timer: Timer
+}
+
+protocol PasswordChanging{
+    func change(securityToken: String,
+                oldPassword: String,
+                newPassword: String,
+                onSuccess: @escaping () -> Void,
+                onFailure: @escaping (String) -> Void)
 }
