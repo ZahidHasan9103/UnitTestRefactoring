@@ -5,7 +5,7 @@
 //  Created by ZEUS on 5/7/24.
 //
 
-import Foundation
+import UIKit
 import XCTest
 
 func verifyMethodCalledOnce(
@@ -36,3 +36,68 @@ func verifyMethodNeverCalled(
             XCTFail("Never wanted but was called \(callCount) \(time) " + "\(methodName) with \(describeArguments())", file: file, line: line)
         }
     }
+
+func systemItem(for barButtonItem: UIBarButtonItem) -> UIBarButtonItem.SystemItem{
+    let systemItemNumber = barButtonItem.value(forKey: "systemItem") as! Int
+    return UIBarButtonItem.SystemItem(rawValue: systemItemNumber)!
+}
+
+
+extension UIBarButtonItem.SystemItem: CustomStringConvertible{
+    public var description: String {
+        switch self {
+        case .done:
+            "done"
+        case .cancel:
+            "cancel"
+        case .edit:
+            "edit"
+        case .save:
+            "save"
+        case .add:
+            "add"
+        case .flexibleSpace:
+            "flexibleSpace"
+        case .fixedSpace:
+            "fixedSpace"
+        case .compose:
+            "compose"
+        case .reply:
+            "replu"
+        case .action:
+            "action"
+        case .organize:
+            "organize"
+        case .bookmarks:
+            "bookmarks"
+        case .search:
+            "search"
+        case .refresh:
+            "refresh"
+        case .stop:
+            "stop"
+        case .camera:
+            "camera"
+        case .trash:
+            "trash"
+        case .play:
+            "play"
+        case .pause:
+            "pause"
+        case .rewind:
+            "rewind"
+        case .fastForward:
+            "fastforward"
+        case .undo:
+            "undo"
+        case .redo:
+            "redo"
+        case .pageCurl:
+            "pageCurl"
+        case .close:
+            "close"
+        @unknown default:
+            fatalError("Unknown UIBarButton.SystemItem")
+        }
+    }
+}

@@ -102,9 +102,9 @@
 		C09537AB2C35EF270048FD1C /* RefactoringTests */ = {
 			isa = PBXGroup;
 			children = (
+				C07223622C38293600D0215D /* PasswordViewControllerTests.swift */,
 				C072235E2C374A4200D0215D /* TestHelpers.swift */,
 				C07223602C374CA600D0215D /* MockPasswordChanger.swift */,
-				C07223622C38293600D0215D /* PasswordViewControllerTests.swift */,
 			);
 			path = RefactoringTests;
 			sourceTree = "<group>";

@@ -36,4 +36,8 @@ final class PasswordViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.navigationBar.topItem?.title, "Change Password")
     }
     
+    func test_cancelBarButton_shouldBeSystemItemCancel(){
+        XCTAssertEqual(systemItem(for: sut.cancelBarButton), .cancel)
+    }
+    
 }
