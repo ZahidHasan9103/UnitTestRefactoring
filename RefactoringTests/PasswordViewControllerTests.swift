@@ -40,4 +40,16 @@ final class PasswordViewControllerTests: XCTestCase {
         XCTAssertEqual(systemItem(for: sut.cancelBarButton), .cancel)
     }
     
+    func test_oldPasswordTextField_shouldHavePlaceholder(){
+        XCTAssertEqual(sut.oldPasswordTextField.placeholder, "Current Password")
+    }
+    
+    func test_newPasswordTextField_shouldHavePlaceholder(){
+        XCTAssertEqual(sut.newPasswordTextField.placeholder, "New Password")
+    }
+    
+    func test_confirmPasswordTextField_shouldHavePlaceholder(){
+        XCTAssertEqual(sut.confirmPasswordTextField.placeholder, "Confirm New Password")
+    }
+    
 }
