@@ -10,6 +10,11 @@
 		C072235F2C374A4200D0215D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C072235E2C374A4200D0215D /* TestHelpers.swift */; };
 		C07223612C374CA600D0215D /* MockPasswordChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07223602C374CA600D0215D /* MockPasswordChanger.swift */; };
 		C07223632C38293600D0215D /* PasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07223622C38293600D0215D /* PasswordViewControllerTests.swift */; };
+		C07223692C38852A00D0215D /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = C07223652C38852A00D0215D /* CHANGELOG.md */; };
+		C072236A2C38852A00D0215D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C07223662C38852A00D0215D /* README.md */; };
+		C072236B2C38852A00D0215D /* ViewControllerPresentationSpy.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07223672C38852A00D0215D /* ViewControllerPresentationSpy.xcframework */; };
+		C072236C2C38852A00D0215D /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = C07223682C38852A00D0215D /* LICENSE.txt */; };
+		C072236D2C38853F00D0215D /* ViewControllerPresentationSpy.xcframework in Resources */ = {isa = PBXBuildFile; fileRef = C07223672C38852A00D0215D /* ViewControllerPresentationSpy.xcframework */; };
 		C09537962C35EF250048FD1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09537952C35EF250048FD1C /* AppDelegate.swift */; };
 		C09537982C35EF250048FD1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09537972C35EF250048FD1C /* SceneDelegate.swift */; };
 		C095379A2C35EF250048FD1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09537992C35EF250048FD1C /* ViewController.swift */; };
@@ -34,6 +39,10 @@
 		C072235E2C374A4200D0215D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		C07223602C374CA600D0215D /* MockPasswordChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPasswordChanger.swift; sourceTree = "<group>"; };
 		C07223622C38293600D0215D /* PasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewControllerTests.swift; sourceTree = "<group>"; };
+		C07223652C38852A00D0215D /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		C07223662C38852A00D0215D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C07223672C38852A00D0215D /* ViewControllerPresentationSpy.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ViewControllerPresentationSpy.xcframework; sourceTree = "<group>"; };
+		C07223682C38852A00D0215D /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C09537922C35EF250048FD1C /* Refactoring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Refactoring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09537952C35EF250048FD1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C09537972C35EF250048FD1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,12 +68,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C072236B2C38852A00D0215D /* ViewControllerPresentationSpy.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C07223642C38852A00D0215D /* ViewControllerPresentationSpy-7.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				C07223652C38852A00D0215D /* CHANGELOG.md */,
+				C07223662C38852A00D0215D /* README.md */,
+				C07223672C38852A00D0215D /* ViewControllerPresentationSpy.xcframework */,
+				C07223682C38852A00D0215D /* LICENSE.txt */,
+			);
+			path = "ViewControllerPresentationSpy-7.0.0";
+			sourceTree = "<group>";
+		};
 		C09537892C35EF250048FD1C = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +123,7 @@
 		C09537AB2C35EF270048FD1C /* RefactoringTests */ = {
 			isa = PBXGroup;
 			children = (
+				C07223642C38852A00D0215D /* ViewControllerPresentationSpy-7.0.0 */,
 				C07223622C38293600D0215D /* PasswordViewControllerTests.swift */,
 				C072235E2C374A4200D0215D /* TestHelpers.swift */,
 				C07223602C374CA600D0215D /* MockPasswordChanger.swift */,
@@ -200,6 +222,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C072236D2C38853F00D0215D /* ViewControllerPresentationSpy.xcframework in Resources */,
+				C072236C2C38852A00D0215D /* LICENSE.txt in Resources */,
+				C072236A2C38852A00D0215D /* README.md in Resources */,
+				C07223692C38852A00D0215D /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

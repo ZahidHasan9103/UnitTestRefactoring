@@ -42,12 +42,28 @@ func systemItem(for barButtonItem: UIBarButtonItem) -> UIBarButtonItem.SystemIte
     return UIBarButtonItem.SystemItem(rawValue: systemItemNumber)!
 }
 
+func tap(_ button: UIButton){
+    button.sendActions(for: .touchUpInside)
+}
+
+func tap(_ button: UIBarButtonItem){
+    _ = button.target?.perform(button.action, with: nil)
+}
+
+func putInViewHierarchy(_ vc: UIViewController){
+    let window = UIWindow()
+    window.addSubview(vc.view)
+}
+
+func executeRunLoop(){
+    RunLoop.current.run(until: Date())
+}
+
 extension UITextContentType: CustomStringConvertible{
     public var description: String {
         rawValue
     }
 }
-
 
 extension UIBarButtonItem.SystemItem: CustomStringConvertible{
     public var description: String {

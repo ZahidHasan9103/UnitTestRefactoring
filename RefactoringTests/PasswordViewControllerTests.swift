@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import ViewControllerPresentationSpy
 @testable import Refactoring
 final class PasswordViewControllerTests: XCTestCase {
 
@@ -19,6 +20,7 @@ final class PasswordViewControllerTests: XCTestCase {
     }
     
     override func tearDown() {
+        executeRunLoop()
         sut = nil
         super.tearDown()
     }
@@ -74,9 +76,47 @@ final class PasswordViewControllerTests: XCTestCase {
     
     func test_confirmPasswordTextField_shouldHavePasswordAttributes(){
         let textField = sut.confirmPasswordTextField!
+        
         XCTAssertEqual(textField.textContentType, .newPassword)
         XCTAssertTrue(textField.isSecureTextEntry)
         XCTAssertTrue(textField.enablesReturnKeyAutomatically)
     }
     
+    func test_tappingCancel_withFocusOnPasswordTextField_shouldResignThatFocus(){
+        putFocusOn(textField: sut.oldPasswordTextField)
+        XCTAssertTrue(sut.oldPasswordTextField.isFirstResponder, "precondition")
+        
+        tap(sut.cancelBarButton)
+        XCTAssertFalse(sut.oldPasswordTextField.isFirstResponder)
+    }
+    
+    func test_tappingCancel_withFocusOnNewPasswordTextField_shouldResignThatFocus(){
+        putFocusOn(textField: sut.newPasswordTextField)
+        XCTAssertTrue(sut.newPasswordTextField.isFirstResponder, "precondition")
+        
+        tap(sut.cancelBarButton)
+        XCTAssertFalse(sut.newPasswordTextField.isFirstResponder)
+    }
+    
+    func test_tappingCancel_withFocusOnConfirmPasswordTextField_shouldResignThatFocus(){
+        putFocusOn(textField: sut.confirmPasswordTextField)
+        XCTAssertTrue(sut.confirmPasswordTextField.isFirstResponder, "precondition")
+        
+        tap(sut.cancelBarButton)
+        XCTAssertFalse(sut.confirmPasswordTextField.isFirstResponder)
+    }
+    
+    @MainActor func test_tappingCancel_shouldDismissModal(){
+        let dismissalVerifier = DismissalVerifier()
+        
+        tap(sut.cancelBarButton)
+        
+        dismissalVerifier.verify(animated: true, dismissedViewController: sut)
+    }
+    
+    //MARK - Helper Methods
+    private func putFocusOn(textField: UITextField){
+        putInViewHierarchy(sut)
+        textField.becomeFirstResponder()
+    }
 }
