@@ -56,4 +56,27 @@ final class PasswordViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.submitButton.titleLabel?.text, "Submit")
     }
     
+    func test_oldPasswordTextField_shouldHavePasswordAttributes(){
+        let textField = sut.oldPasswordTextField!
+        XCTAssertEqual(textField.textContentType, .password)
+        XCTAssertTrue(textField.isSecureTextEntry)
+        XCTAssertTrue(textField.enablesReturnKeyAutomatically)
+
+    }
+    
+    func test_newPasswordTextField_shouldHavePasswordAttributes(){
+        let textField = sut.newPasswordTextField!
+        XCTAssertEqual(textField.textContentType, .newPassword)
+        XCTAssertTrue(textField.isSecureTextEntry)
+        XCTAssertTrue(textField.enablesReturnKeyAutomatically)
+
+    }
+    
+    func test_confirmPasswordTextField_shouldHavePasswordAttributes(){
+        let textField = sut.confirmPasswordTextField!
+        XCTAssertEqual(textField.textContentType, .newPassword)
+        XCTAssertTrue(textField.isSecureTextEntry)
+        XCTAssertTrue(textField.enablesReturnKeyAutomatically)
+    }
+    
 }

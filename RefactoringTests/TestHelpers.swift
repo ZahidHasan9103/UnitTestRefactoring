@@ -42,6 +42,12 @@ func systemItem(for barButtonItem: UIBarButtonItem) -> UIBarButtonItem.SystemIte
     return UIBarButtonItem.SystemItem(rawValue: systemItemNumber)!
 }
 
+extension UITextContentType: CustomStringConvertible{
+    public var description: String {
+        rawValue
+    }
+}
+
 
 extension UIBarButtonItem.SystemItem: CustomStringConvertible{
     public var description: String {
