@@ -16,6 +16,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private(set) weak var confirmPasswordTextField: UITextField!
     @IBOutlet private(set) weak var submitButton: UIButton!
     
+    @IBOutlet private(set) weak var navigationBar: UINavigationBar!
     
     lazy var passwordChanger: PasswordChanging = PasswordChanger()
     var securityToken = ""
