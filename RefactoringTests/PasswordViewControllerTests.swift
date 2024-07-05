@@ -52,4 +52,8 @@ final class PasswordViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.confirmPasswordTextField.placeholder, "Confirm New Password")
     }
     
+    func test_submitButton_shouldHaveTitle(){
+        XCTAssertEqual(sut.submitButton.titleLabel?.text, "Submit")
+    }
+    
 }
