@@ -32,5 +32,8 @@ final class PasswordViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.navigationBar, "navigationBar")
     }
     
+    func test_navigationBar_shouldHaveTitle(){
+        XCTAssertEqual(sut.navigationBar.topItem?.title, "Change Password")
+    }
     
 }
