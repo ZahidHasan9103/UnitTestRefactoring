@@ -57,31 +57,40 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         
         if newPasswordTextField.text?.isEmpty ?? true{
             let alertController = UIAlertController(title: nil, message: "Please enter a new password.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {[weak self] _ in
+            let okButton = UIAlertAction(title: "OK", style: .default){[weak self] _ in
                 self?.newPasswordTextField.becomeFirstResponder()
-            }))
+            }
+            alertController.addAction(okButton)
+            alertController.preferredAction = okButton
             self.present(alertController, animated: true)
             return
         }
         
         if newPasswordTextField.text?.count ?? 0 < 6{
-            let alertController = UIAlertController(title: nil, message: "The new password should have at least 6 chacarters", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {[weak self] _ in
+            let alertController = UIAlertController(title: nil, message: "The new password should have at least 6 characters.", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                 self?.newPasswordTextField.text = ""
                 self?.confirmPasswordTextField.text = ""
                 self?.newPasswordTextField.becomeFirstResponder()
-            }))
+            }
+            
+            alertController.addAction(okAction)
+            alertController.preferredAction = okAction
+            
             self.present(alertController, animated: true)
             return
         }
         
         if newPasswordTextField.text != confirmPasswordTextField.text{
             let alertController = UIAlertController(title: nil, message: "The new password and the confirm password " + "don't match. Please try again", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {[weak self] _ in
+            let okAction = UIAlertAction(title: "OK", style: .default) {[weak self] _ in
                 self?.newPasswordTextField.text = ""
                 self?.confirmPasswordTextField.text = ""
                 self?.newPasswordTextField.becomeFirstResponder()
-            }))
+            }
+            alertController.addAction(okAction)
+            alertController.preferredAction = okAction
             self.present(alertController, animated: true)
             return
         }

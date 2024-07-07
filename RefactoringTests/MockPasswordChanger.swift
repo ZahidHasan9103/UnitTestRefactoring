@@ -56,7 +56,7 @@ final class MockPasswordChanger: PasswordChanging{
                        line: line)
     }
     
-    private func verifyChangeNeverCalled(
+    func verifyChangeNeverCalled(
         file: StaticString = #file,
         line: UInt = #line){
         changeWasNeverCalled(file: file, line: line)
