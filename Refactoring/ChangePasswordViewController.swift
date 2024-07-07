@@ -8,10 +8,10 @@
 import UIKit
 
 class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet private(set) weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet private(set) weak var oldPasswordTextField: UITextField!
-
+    
     @IBOutlet private(set) weak var newPasswordTextField: UITextField!
     @IBOutlet private(set) weak var confirmPasswordTextField: UITextField!
     @IBOutlet private(set) weak var submitButton: UIButton!
@@ -20,8 +20,8 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     lazy var passwordChanger: PasswordChanging = PasswordChanger()
     var securityToken = ""
-    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-    private let activityIndicator = UIActivityIndicatorView(style: .large)
+    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     
     
     
@@ -129,7 +129,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
                                   style: .default,
                                   handler: { [weak self] _ in
                                       self?.dismiss(animated: true)
-                }))
+                                  }))
                 self?.present(alertController, animated: true)
             }, onFailure: {[weak self] message in
                 self?.activityIndicator.stopAnimating()
@@ -149,7 +149,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
                                       self?.view.backgroundColor = .white
                                       self?.blurView.removeFromSuperview()
                                       self?.cancelBarButton.isEnabled = true
-                }))
+                                  }))
                 self?.present(alertController, animated: true)
                 
                 

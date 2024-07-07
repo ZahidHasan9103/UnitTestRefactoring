@@ -262,7 +262,83 @@ final class PasswordViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.newPasswordTextField.isFirstResponder)
     }
     
-    //MARK - Helper Methods
+    //MARK: - test  set appearance on waiting state, when the validation is succeded
+    func test_tappingSubmit_withValidFieldsFocusedOnOldPassword_shouldResignFocus(){
+        setupValidPasswordEntries()
+        putFocusOn(textField: sut.oldPasswordTextField)
+        XCTAssertTrue(sut.oldPasswordTextField.isFirstResponder, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertFalse(sut.oldPasswordTextField.isFirstResponder)
+    }
+    
+    func test_tappingSubmit_withValidFieldsFocusedOnNewPassword_shouldResignFocus(){
+        setupValidPasswordEntries()
+        putFocusOn(textField: sut.newPasswordTextField)
+        XCTAssertTrue(sut.newPasswordTextField.isFirstResponder, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertFalse(sut.newPasswordTextField.isFirstResponder)
+    }
+    
+    func test_tappingSubmit_withValidFieldsFocusedOnConfirmPassword_shouldResignFocus(){
+        setupValidPasswordEntries()
+        putFocusOn(textField: sut.confirmPasswordTextField)
+        XCTAssertTrue(sut.confirmPasswordTextField.isFirstResponder, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertFalse(sut.confirmPasswordTextField.isFirstResponder)
+    }
+    
+    func test_tappingSubmit_withValidFields_shouldDisableCancelButton(){
+        setupValidPasswordEntries()
+        XCTAssertTrue(sut.cancelBarButton.isEnabled, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertFalse(sut.cancelBarButton.isEnabled)
+    }
+    
+    func test_tappingSubmitWithValidFields_shouldShowBlur(){
+        setupValidPasswordEntries()
+        XCTAssertNil(sut.blurView.superview, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertNotNil(sut.blurView.subviews)
+    }
+    
+    func test_tappingSubmit_withValidFields_shouldShowActivityIndicator(){
+        setupValidPasswordEntries()
+        XCTAssertNil(sut.activityIndicator.superview, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertNotNil(sut.activityIndicator.superview)
+    }
+    
+    func test_tappingSubmit_withValidFields_shouldStartActivityIndicatorAnimation(){
+        setupValidPasswordEntries()
+        XCTAssertFalse(sut.activityIndicator.isAnimating, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertTrue(sut.activityIndicator.isAnimating)
+    }
+    
+    func test_tappingSubmit_withValidFields_shouldClearBackgroundColorForBlurView(){
+        setupValidPasswordEntries()
+        XCTAssertNotEqual(sut.view.backgroundColor, .clear, "precondition")
+        
+        tap(sut.submitButton)
+        
+        XCTAssertEqual(sut.view.backgroundColor, .clear)
+    }
+    
+    //MARK: - Helper Methods
     private func putFocusOn(textField: UITextField){
         putInViewHierarchy(sut)
         textField.becomeFirstResponder()
