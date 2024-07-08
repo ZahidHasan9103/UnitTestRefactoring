@@ -472,6 +472,57 @@ final class PasswordViewControllerTests: XCTestCase {
         XCTAssertEqual(dismissVerifier.dismissedCount, 0)
     }
     
+    //MARK: - Test TextField delegate Methods
+    func test_textfieldsDelegatesShouldBeConnected(){
+        XCTAssertNotNil(sut.oldPasswordTextField.delegate, "oldPasswordTextField")
+        XCTAssertNotNil(sut.newPasswordTextField.delegate, "newPasswordTextField")
+        XCTAssertNotNil(sut.confirmPasswordTextField.delegate, "confirmPasswordTextField")
+    }
+    
+    func test_hittingReturnFromOldPassword_shouldPutFocusOnNewPassword(){
+        putInViewHierarchy(sut)
+        
+        shouldReturn(in: sut.oldPasswordTextField)
+        
+        XCTAssertTrue(sut.newPasswordTextField.isFirstResponder)
+    }
+    
+    func test_hittingReturnFromNewPassword_shouldPutFocusOnConfirmPassword(){
+        putInViewHierarchy(sut)
+        
+        shouldReturn(in: sut.newPasswordTextField)
+        
+        XCTAssertTrue(sut.confirmPasswordTextField.isFirstResponder)
+    }
+    
+    func test_hittingReturnFromConfirmPassword_shouldRequestForPasswordChange(){
+        sut.securityToken = "token"
+        sut.oldPasswordTextField.text = "Old456"
+        sut.newPasswordTextField.text = "New456"
+        sut.confirmPasswordTextField.text = sut.newPasswordTextField.text
+        putInViewHierarchy(sut)
+        
+        shouldReturn(in: sut.confirmPasswordTextField)
+        
+        passwordChanger.verifyChange(securityToken: "token", oldPassword: "Old456", newPassword: "New456")
+    }
+    
+    func test_hittingReturnFromOldPassword_shouldNotRequestForPasswordChange(){
+        setupValidPasswordEntries()
+        
+        shouldReturn(in: sut.oldPasswordTextField)
+        
+        passwordChanger.verifyChangeNeverCalled()
+    }
+    
+    func test_hittingReturnFromNewPassword_shouldNotRequestForPasswordChange(){
+        setupValidPasswordEntries()
+        
+        shouldReturn(in: sut.newPasswordTextField)
+        
+        passwordChanger.verifyChangeNeverCalled()
+    }
+    
     //MARK: - Helper Methods
     private func putFocusOn(textField: UITextField){
         putInViewHierarchy(sut)
