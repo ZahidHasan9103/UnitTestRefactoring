@@ -38,6 +38,7 @@ class ChangePasswordViewController: UIViewController {
         blurView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.color = .blue
+        
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -61,21 +62,21 @@ class ChangePasswordViewController: UIViewController {
         }
         
         if newPasswordTextField.text?.isEmpty ?? true{
-            showAlert("Please enter a new password.") { [weak self] _ in
+            showAlert(viewModel.enterNewPasswordMessage) { [weak self] _ in
                 self?.newPasswordTextField.becomeFirstResponder()
             }
             return false
         }
         
         if newPasswordTextField.text?.count ?? 0 < 6{
-            showAlert("The new password should have at least 6 characters.") { [weak self] _ in
+            showAlert(viewModel.newPasswordTooShortMessage) { [weak self] _ in
                 self?.resetNewPassword()
             }
             return false
         }
         
         if newPasswordTextField.text != confirmPasswordTextField.text{
-            showAlert("The new password and the confirm password " + "don't match. Please try again") { [weak self] _ in
+            showAlert(viewModel.confirmationPasswordDoesNotMatchMessage) { [weak self] _ in
                 self?.resetNewPassword()
             }
             return false
@@ -106,21 +107,17 @@ class ChangePasswordViewController: UIViewController {
             oldPassword: oldPasswordTextField.text ?? "",
             newPassword: newPasswordTextField.text ?? "",
             onSuccess: {[weak self] in
-                self?.hideSpinner()
-                self?.showAlert("Your password has been changed successfully", okAction: { [weak self] _ in
-                    self?.dismiss(animated: true)
-                })
-            }, onFailure: {[weak self] message in
-                self?.hideSpinner()
-                self?.showAlert(message, okAction: { [weak self] _ in
-                    self?.startOver()
-                })
+                self?.handleSuccess()
+            }, 
+            onFailure: {[weak self] message in
+                self?.handleFailure(message: message)
             })
     }
     
     private func showAlert(_ message: String, okAction: @escaping (UIAlertAction) -> Void) {
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default, handler: okAction)
+        let okButton = UIAlertAction(title: viewModel
+            .okButtonLabel, style: .default, handler: okAction)
         alertController.addAction(okButton)
         alertController.preferredAction = okButton
         self.present(alertController, animated: true)
@@ -145,6 +142,20 @@ class ChangePasswordViewController: UIViewController {
       view.backgroundColor = .white
       blurView.removeFromSuperview()
       cancelBarButton.isEnabled = true
+    }
+    
+    private func handleSuccess(){
+        hideSpinner()
+        showAlert(viewModel.successMessage, okAction: { [weak self] _ in
+            self?.dismiss(animated: true)
+        })
+    }
+    
+    private func handleFailure(message: String){
+        hideSpinner()
+        showAlert(message, okAction: { [weak self] _ in
+            self?.startOver()
+        })
     }
 }
 
