@@ -46,56 +46,49 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true)
     }
     
-    
-    
     @IBAction func changePassword() {
+
+        guard validateInputs() else {return}
+        setupWaitingAppearance()
+        attemptToChangePassword()
+    }
+    
+    private func validateInputs() -> Bool{
+        
         //1. Validate inputs
         if oldPasswordTextField.text?.isEmpty ?? true{
             oldPasswordTextField.becomeFirstResponder()
-            return
+            return false
         }
         
         if newPasswordTextField.text?.isEmpty ?? true{
-            let alertController = UIAlertController(title: nil, message: "Please enter a new password.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default){[weak self] _ in
+            showAlert("Please enter a new password.") { [weak self] _ in
                 self?.newPasswordTextField.becomeFirstResponder()
             }
-            alertController.addAction(okButton)
-            alertController.preferredAction = okButton
-            self.present(alertController, animated: true)
-            return
+            return false
         }
         
         if newPasswordTextField.text?.count ?? 0 < 6{
-            let alertController = UIAlertController(title: nil, message: "The new password should have at least 6 characters.", preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            showAlert("The new password should have at least 6 characters.") { [weak self] _ in
                 self?.newPasswordTextField.text = ""
                 self?.confirmPasswordTextField.text = ""
                 self?.newPasswordTextField.becomeFirstResponder()
             }
-            
-            alertController.addAction(okAction)
-            alertController.preferredAction = okAction
-            
-            self.present(alertController, animated: true)
-            return
+            return false
         }
         
         if newPasswordTextField.text != confirmPasswordTextField.text{
-            let alertController = UIAlertController(title: nil, message: "The new password and the confirm password " + "don't match. Please try again", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) {[weak self] _ in
+            showAlert("The new password and the confirm password " + "don't match. Please try again") { [weak self] _ in
                 self?.newPasswordTextField.text = ""
                 self?.confirmPasswordTextField.text = ""
                 self?.newPasswordTextField.becomeFirstResponder()
             }
-            alertController.addAction(okAction)
-            alertController.preferredAction = okAction
-            self.present(alertController, animated: true)
-            return
+            return false
         }
-        
-        //2. Set up waiting
+        return true
+    }
+    
+    private func setupWaitingAppearance() {
         oldPasswordTextField.resignFirstResponder()
         newPasswordTextField.resignFirstResponder()
         confirmPasswordTextField.resignFirstResponder()
@@ -111,8 +104,10 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         activityIndicator.startAnimating()
-        
-        //3.Attempt to change Password
+
+    }
+    
+    private func attemptToChangePassword() {
         passwordChanger.change(
             securityToken: securityToken,
             oldPassword: oldPasswordTextField.text ?? "",
@@ -128,8 +123,8 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
                 let okAction = UIAlertAction(title: "OK",
                                              style:
                         .default) { [weak self] _ in
-                    self?.dismiss(animated: true)
-                }
+                            self?.dismiss(animated: true)
+                        }
                 
                 alertController.addAction(okAction)
                 alertController.preferredAction = okAction
@@ -152,13 +147,19 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
                             self?.view.backgroundColor = .white
                             self?.blurView.removeFromSuperview()
                             self?.cancelBarButton.isEnabled = true
-                }
+                        }
                 alertController.addAction(okAction)
                 alertController.preferredAction = okAction
                 self?.present(alertController, animated: true)
-                
-                
             })
+    }
+    
+    private func showAlert(_ message: String, okAction: @escaping (UIAlertAction) -> Void) {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: okAction)
+        alertController.addAction(okButton)
+        alertController.preferredAction = okButton
+        self.present(alertController, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
