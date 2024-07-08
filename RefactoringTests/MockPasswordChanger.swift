@@ -82,6 +82,15 @@ final class MockPasswordChanger: PasswordChanging{
             line: line)
     }
     
+    func changeCallSuccess(file: StaticString = #file, line: UInt = #line){
+        guard changeWasCalledOnce() else {return}
+        changeArgsOnSuccess.last!()
+    }
+    
+    func changeCalledFailure(message: String, file: StaticString = #file, line: UInt = #line){
+        guard changeWasCalledOnce() else {return}
+        changeArgsOnFailure.last!(message)
+    }
     
     private var changeMethodName: String{
         "change(securityToken:oldPassword:newPassword:onSuccess:onFailure:)"

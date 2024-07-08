@@ -124,12 +124,15 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
                     title: nil,
                     message: "Your password has been changed successfully",
                     preferredStyle: .alert)
-                alertController.addAction(
-                    UIAlertAction(title: "OK",
-                                  style: .default,
-                                  handler: { [weak self] _ in
-                                      self?.dismiss(animated: true)
-                                  }))
+                
+                let okAction = UIAlertAction(title: "OK",
+                                             style:
+                        .default) { [weak self] _ in
+                    self?.dismiss(animated: true)
+                }
+                
+                alertController.addAction(okAction)
+                alertController.preferredAction = okAction
                 self?.present(alertController, animated: true)
             }, onFailure: {[weak self] message in
                 self?.activityIndicator.stopAnimating()
@@ -138,18 +141,20 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
                     title: nil,
                     message: message,
                     preferredStyle: .alert)
-                alertController.addAction(
-                    UIAlertAction(title: "OK",
-                                  style: .default,
-                                  handler: { [weak self] _ in
-                                      self?.oldPasswordTextField.text = ""
-                                      self?.newPasswordTextField.text = ""
-                                      self?.confirmPasswordTextField.text = ""
-                                      self?.oldPasswordTextField.becomeFirstResponder()
-                                      self?.view.backgroundColor = .white
-                                      self?.blurView.removeFromSuperview()
-                                      self?.cancelBarButton.isEnabled = true
-                                  }))
+                
+                let okAction = UIAlertAction(title: "OK",
+                                             style:
+                        .default) { [weak self] _ in
+                            self?.oldPasswordTextField.text = ""
+                            self?.newPasswordTextField.text = ""
+                            self?.confirmPasswordTextField.text = ""
+                            self?.oldPasswordTextField.becomeFirstResponder()
+                            self?.view.backgroundColor = .white
+                            self?.blurView.removeFromSuperview()
+                            self?.cancelBarButton.isEnabled = true
+                }
+                alertController.addAction(okAction)
+                alertController.preferredAction = okAction
                 self?.present(alertController, animated: true)
                 
                 
