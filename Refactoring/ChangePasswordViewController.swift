@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
+class ChangePasswordViewController: UIViewController {
     
     @IBOutlet private(set) weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet private(set) weak var oldPasswordTextField: UITextField!
@@ -162,6 +162,9 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         self.present(alertController, animated: true)
     }
     
+}
+
+extension ChangePasswordViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField === oldPasswordTextField{
             newPasswordTextField.becomeFirstResponder()
@@ -172,4 +175,5 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
+
 }
