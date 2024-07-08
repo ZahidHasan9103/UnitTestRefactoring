@@ -89,7 +89,7 @@
 		C09537892C35EF250048FD1C = {
 			isa = PBXGroup;
 			children = (
-				C09537942C35EF250048FD1C /* Refactoring */,
+				C09537942C35EF250048FD1C /* MVVM */,
 				C09537AB2C35EF270048FD1C /* RefactoringTests */,
 				C09537932C35EF250048FD1C /* Products */,
 			);
@@ -104,7 +104,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C09537942C35EF250048FD1C /* Refactoring */ = {
+		C09537942C35EF250048FD1C /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				C09537952C35EF250048FD1C /* AppDelegate.swift */,
@@ -117,7 +117,7 @@
 				C09537E52C3708F30048FD1C /* PasswordChanger.swift */,
 				C09537E72C370C920048FD1C /* ChangePasswordViewController.swift */,
 			);
-			path = Refactoring;
+			path = MVVM;
 			sourceTree = "<group>";
 		};
 		C09537AB2C35EF270048FD1C /* RefactoringTests */ = {
