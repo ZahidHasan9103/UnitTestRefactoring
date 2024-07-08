@@ -40,9 +40,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func cancel(_ sender: Any) {
-        oldPasswordTextField.resignFirstResponder()
-        newPasswordTextField.resignFirstResponder()
-        confirmPasswordTextField.resignFirstResponder()
+        view.endEditing(true)
         dismiss(animated: true)
     }
     
@@ -89,9 +87,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func setupWaitingAppearance() {
-        oldPasswordTextField.resignFirstResponder()
-        newPasswordTextField.resignFirstResponder()
-        confirmPasswordTextField.resignFirstResponder()
+        view.endEditing(true)
         cancelBarButton.isEnabled = false
         view.backgroundColor = .clear
         view.addSubview(blurView)
