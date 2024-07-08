@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0683B0D2C3C30FE00893AB6 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0683B0C2C3C30FE00893AB6 /* ChangePasswordViewModel.swift */; };
 		C072235F2C374A4200D0215D /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C072235E2C374A4200D0215D /* TestHelpers.swift */; };
 		C07223612C374CA600D0215D /* MockPasswordChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07223602C374CA600D0215D /* MockPasswordChanger.swift */; };
 		C07223632C38293600D0215D /* PasswordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07223622C38293600D0215D /* PasswordViewControllerTests.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C0683B0C2C3C30FE00893AB6 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		C072235E2C374A4200D0215D /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		C07223602C374CA600D0215D /* MockPasswordChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPasswordChanger.swift; sourceTree = "<group>"; };
 		C07223622C38293600D0215D /* PasswordViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewControllerTests.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				C09537A32C35EF270048FD1C /* Info.plist */,
 				C09537E52C3708F30048FD1C /* PasswordChanger.swift */,
 				C09537E72C370C920048FD1C /* ChangePasswordViewController.swift */,
+				C0683B0C2C3C30FE00893AB6 /* ChangePasswordViewModel.swift */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C095379A2C35EF250048FD1C /* ViewController.swift in Sources */,
+				C0683B0D2C3C30FE00893AB6 /* ChangePasswordViewModel.swift in Sources */,
 				C09537962C35EF250048FD1C /* AppDelegate.swift in Sources */,
 				C09537982C35EF250048FD1C /* SceneDelegate.swift in Sources */,
 				C09537E82C370C920048FD1C /* ChangePasswordViewController.swift in Sources */,
@@ -412,7 +416,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9T6VTX7NFQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Refactoring/Info.plist;
+				INFOPLIST_FILE = MVVM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -440,7 +444,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9T6VTX7NFQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Refactoring/Info.plist;
+				INFOPLIST_FILE = MVVM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

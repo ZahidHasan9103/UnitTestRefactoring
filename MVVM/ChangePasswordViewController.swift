@@ -18,6 +18,7 @@ class ChangePasswordViewController: UIViewController {
     
     @IBOutlet private(set) weak var navigationBar: UINavigationBar!
     
+    var viewModel: ChangePasswordViewModel!
     lazy var passwordChanger: PasswordChanging = PasswordChanger()
     var securityToken = ""
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
