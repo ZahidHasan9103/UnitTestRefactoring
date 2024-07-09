@@ -72,40 +72,46 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func changePassword() {
-        
+        updateViewModelToTextField()
         guard validateInputs() else {return}
         setupWaitingAppearance()
         attemptToChangePassword()
     }
     
+    private func updateViewModelToTextField(){
+        viewModel.oldPassword = oldPasswordTextField.text ?? ""
+        viewModel.newPassword = newPasswordTextField.text ?? ""
+        viewModel.confirmPassword = confirmPasswordTextField.text ?? ""
+    }
+    
     private func validateInputs() -> Bool{
-        
         //1. Validate inputs
-        if oldPasswordTextField.text?.isEmpty ?? true{
+        if viewModel.isOldPasswordEmpty{
             viewModel.inputFocus = .oldPassword
             return false
         }
         
-        if newPasswordTextField.text?.isEmpty ?? true{
+        if viewModel.isNewPasswordEmpty{
             showAlert(viewModel.enterNewPasswordMessage) { [weak self] _ in
                 self?.viewModel.inputFocus = .newPassword
             }
             return false
         }
         
-        if newPasswordTextField.text?.count ?? 0 < 6{
+        if viewModel.isNewPasswordTooShort{
             showAlert(viewModel.newPasswordTooShortMessage) { [weak self] _ in
                 self?.resetNewPassword()
             }
             return false
         }
         
-        if newPasswordTextField.text != confirmPasswordTextField.text{
+        if viewModel.isConfirmPasswordMisMatch{
             showAlert(viewModel.confirmationPasswordDoesNotMatchMessage) { [weak self] _ in
                 self?.resetNewPassword()
             }
             return false
         }
+        
         return true
     }
     
@@ -120,8 +126,8 @@ class ChangePasswordViewController: UIViewController {
     private func attemptToChangePassword() {
         passwordChanger.change(
             securityToken: securityToken,
-            oldPassword: oldPasswordTextField.text ?? "",
-            newPassword: newPasswordTextField.text ?? "",
+            oldPassword: viewModel.oldPassword,
+            newPassword: viewModel.newPassword,
             onSuccess: {[weak self] in
                 self?.handleSuccess()
             },
