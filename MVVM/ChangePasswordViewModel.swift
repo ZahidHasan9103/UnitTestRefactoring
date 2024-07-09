@@ -13,4 +13,9 @@ struct ChangePasswordViewModel{
     let newPasswordTooShortMessage: String
     let confirmationPasswordDoesNotMatchMessage: String
     let successMessage: String
+    let title = "Change Password"
+    let oldPasswordPlaceHolder = "Current Password"
+    let newPasswordPlaceHolder = "New Password"
+    let confirmPasswordPlaceholder = "Confirm New Password"
+    let submitButtonTitle = "Submiit"
 }

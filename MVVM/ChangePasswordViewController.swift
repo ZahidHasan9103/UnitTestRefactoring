@@ -38,7 +38,15 @@ class ChangePasswordViewController: UIViewController {
         blurView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.color = .blue
-        
+        setLabels()
+    }
+    
+    private func setLabels(){
+        navigationBar.topItem?.title = viewModel.title
+        oldPasswordTextField.placeholder = viewModel.oldPasswordPlaceHolder
+        newPasswordTextField.placeholder = viewModel.newPasswordPlaceHolder
+        confirmPasswordTextField.placeholder = viewModel.confirmPasswordPlaceholder
+        submitButton.setTitle(viewModel.submitButtonTitle, for: .normal)
     }
     
     @IBAction func cancel(_ sender: Any) {
