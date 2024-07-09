@@ -8,6 +8,14 @@
 import Foundation
 
 struct ChangePasswordViewModel{
+    
+    enum InputFocus{
+        case noKeyboard
+        case oldPassword
+        case newPassword
+        case confirmPassword
+    }
+    
     let okButtonLabel: String
     let enterNewPasswordMessage: String
     let newPasswordTooShortMessage: String
@@ -18,4 +26,10 @@ struct ChangePasswordViewModel{
     let newPasswordPlaceHolder = "New Password"
     let confirmPasswordPlaceholder = "Confirm New Password"
     let submitButtonTitle = "Submiit"
+    
+    var isCancelButtonEnabled: Bool = true
+    var inputFocus: InputFocus = .noKeyboard
+    var isBlurViewShowing = false
+    var isActivityIndicatorShowing = false
 }
+
